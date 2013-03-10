@@ -20,6 +20,7 @@ class UserAccount(User):
 
 	billing_account = models.ForeignKey(BillingAccount)
 
+
 class UserOwnedBase(models.Model):
 	account = models.ForeignKey(BillingAccount) # This field is implied by the created_by field, but it is added here as a shortcut.
 	created_by = models.ForeignKey(UserAccount, related_name="%(app_label)s_%(class)s_created_by")
