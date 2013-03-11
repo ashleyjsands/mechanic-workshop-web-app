@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if object %}
+		<form method="post" action="{% if object %}{% url customer object.id %}{% else %}{% url new_customer %}{% endif %}">
+			{{ form }}
+
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="{$ url customers %}" data-role="button">Back</a>
+				<input type="submit" value="Save" name="save" />
+			</div>
+		</form>
+	{% endif %}
+{% endblock %}
