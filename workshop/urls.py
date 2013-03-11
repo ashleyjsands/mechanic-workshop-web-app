@@ -11,8 +11,14 @@ from customer.models import Customer
 
 urlpatterns = patterns('',
 	url(r'^$', account.views.index, name='index'),
-	url(r'customers/$', None, name='customers'),
-	url(r'customers/new/$', 
+	url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'account/login.html'}, name='login'),
+	url(r'^logout/$', account.views.logout, name='logout'),
+	url(r'^main/$', account.views.index, name='main'),
+	url(r'^customers/$', 
+		login_required(ListView.as_view(
+			queryset=Customer.objects.order_by("name").all())), 
+		name='customers'),
+	url(r'^customers/new/$', 
 		login_required(CreateView.as_view(
 			model=Customer,
 			success_url="/customers/%(id)s/")),

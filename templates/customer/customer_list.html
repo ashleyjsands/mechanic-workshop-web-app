@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if customer_list %}
+		<ul data-role="listview">
+			{% for customer in customer_list %}
+				<li><a href="{% url customer customer.id %}">{{ customer.name }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no customers.</p>
+	{% endif %}
+	<div data-role="controlgroup" data-type=horizontal">
+		<a href="{% url create_customer %}" data-role="button">Add Customer</a>
+	</div>
+{% endblock %}

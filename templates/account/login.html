@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post" data-ajax="false">
+		{% csrf_token %}
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="username" autocorrect="off" />
+		<label for="password">Password:</label>
+		<input type="password" name="password" id="password" />
+		<input type="hidden" name="next" value"{{ next }}" />
+	</form>
+{% endblock %}
